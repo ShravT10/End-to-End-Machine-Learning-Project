@@ -1,4 +1,7 @@
 .venv
 .env
 artifacts
-__init.py__
+__init__.py
+.vscode
+logs
+__pycache__
