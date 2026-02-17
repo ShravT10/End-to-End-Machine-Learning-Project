@@ -7,6 +7,8 @@ import dill
 
 from src.exception import CustomException
 
+from sklearn.metrics import r2_score
+
 def save_object(file_path , obj):
     try:
         dir_path = os.path.dirname(file_path)
@@ -18,3 +20,27 @@ def save_object(file_path , obj):
 
     except Exception as e:
         raise CustomException(e,sys)    
+
+
+def evaluate_models(X_test , y_test , X_train , y_train , models):
+    try:
+        report = {}
+
+        for i in range(len(list(models))):
+            model = list(models.values())[i]
+
+            model.fit(X_train,y_train)
+
+            y_pred = model.predict(X_test)
+
+            score = r2_score(y_test,y_pred)
+
+            report[list(models.keys())[i]] = score
+
+        return report
+    
+    except Exception as e:
+        raise CustomException(e,sys)
+        
+
+    

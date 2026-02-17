@@ -5,3 +5,4 @@ __init__.py
 .vscode
 logs
 __pycache__
+catboost_info
